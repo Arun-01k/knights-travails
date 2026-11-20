@@ -21,13 +21,6 @@ function validPosition(position) {
     return true;
 }
 
-function checkIfReached(nextPosition, position) {
-  if (nextPosition[0] === position[0] && nextPosition[1] === position[1]) {
-    startPosition = position;
-    return true;
-  }
-}
-
 function move(position) {
   if (!validPosition(position)) return;
 
@@ -58,7 +51,12 @@ function move(position) {
           visited.add(key);
           parents.set(key, parentKey);
 
-          if (checkIfReached(nextPosition, position)) {
+          if (
+            nextPosition[0] === position[0] &&
+            nextPosition[1] === position[1]
+          ) {
+            startPosition = position;
+
             let current = nextPosition.join(",");
             let path = [];
 
